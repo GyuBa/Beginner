@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <mvc:annotation-driven></mvc:annotation-driven>
+
+
+    <context:component-scan base-package="controller"></context:component-scan>
+    <context:component-scan base-package="repository"></context:component-scan>
+    <context:component-scan base-package="service"></context:component-scan>
+    <context:component-scan base-package="mapper"></context:component-scan>
+    <context:component-scan base-package="config"></context:component-scan>
+
+    <mvc:resources location="classpath:/META-INF/resources/" mapping="swagger-ui.html"></mvc:resources>
+    <mvc:resources location="classpath:/META-INF/resources/webjars/" mapping="/webjars/**"></mvc:resources>
+    <bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!-- VieResolver -> 파일의 절대경로 /views/.jsp 파일을 view로 반환하기 위함 -->
+        <!-- ViewResolver -> view에서 보여주기 전에 참조(확인)하는 것 -->
+        <!-- 이름만 호출 -> Resolver -> 파일 찍어냄 -> 컴퓨터 쓸 수 있음 -->
+        <property name="prefix" value="/WEB-INF/views/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+</beans>
